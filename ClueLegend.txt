@@ -1,0 +1,11 @@
+C, Man Cave, Card
+K, Kitchen, Card
+B, Ballroom, Card
+R, Reading Room, Card
+L, Lounge, Card
+S, Storage Room, Card
+D, Dining Room, Card
+O, Office, Card
+H, Theater , Card
+X, Closet, Other
+W, Walkway, Other
