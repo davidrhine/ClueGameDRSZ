@@ -173,4 +173,31 @@ public final class Board {
 			e.printStackTrace();
 		}
 	}
+	public void initialize() {
+		// TODO Auto-generated method stub
+		try {
+			loadRoomConfig();
+		} catch (BadConfigFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			loadBoardConfig();
+		} catch (BadConfigFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public Set<BoardCell> getAdjList(int i, int j) {
+		// TODO Auto-generated method stub
+		return adjMatrix.get(board[i][j]);
+	}
+	public void calcTargets(int i, int j, int k) {
+		calcTargets(board[i][j],k);
+		
+	}
+	public Set<BoardCell> getTargets() {
+		// TODO Auto-generated method stub
+		return targets;
+	}
 }
