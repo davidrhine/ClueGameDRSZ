@@ -44,10 +44,12 @@ public final class Board {
 			String s = in.next();
 			char c = s.charAt(0);
 			s = in.nextLine();
-			String check = s.substring(s.indexOf(','), s.length());
+			String check = s.substring(s.indexOf(',') + 2, s.length());
 			s = s.substring(1, s.indexOf(','));
 			legend.put(c, s);
-			if (check != "Other" && check != "Card") throw new BadConfigFormatException();
+			if (!check.equals("Other") && !check.equals("Card")){
+				throw new BadConfigFormatException();
+			}
 
 		}
 	}
@@ -65,6 +67,7 @@ public final class Board {
 			String s = in.nextLine();
 			int cols = 0;
 			for (int i = 0; i < s.length(); i+= 2) {
+				
 				char c = s.charAt(i);
 				if(!legend.containsKey(c)) throw new BadConfigFormatException();
 				if(i != s.length() -1){
@@ -157,7 +160,17 @@ public final class Board {
 	}
 
 	public void finalize() {
-		loadRoomConfig();
-		loadBoardConfig();
+		try {
+			loadRoomConfig();
+		} catch (BadConfigFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			loadBoardConfig();
+		} catch (BadConfigFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
