@@ -1,40 +1,107 @@
 package experiments;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.Set;
 
-public class Board {
-private int numRows;
-private int numColumns;
-public static final int MAX_BOARD_SIZE = 50;
-private BoardCell [][] board;
-private Map<Character, String> legend;
-private Map<BoardCell, Set<BoardCell>> adjMatrix;
-private Set<BoardCell> targets;
-private Set<BoardCell> visited;
-private String boardconfigFile;
-private String roomConfigFile;
-
-	public static Board getInstance() {
+public final class Board {
+	private int numRows;
+	private int numColumns;
+	public static final int MAX_BOARD_SIZE = 50;
+	private BoardCell [][] board = new BoardCell[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
+	private Map<Character, String> legend = new HashMap<Character, String>();
+	private Map<BoardCell, Set<BoardCell>> adjMatrix = new HashMap<BoardCell, Set<BoardCell>>();
+	private Set<BoardCell> targets;
+	private Set<BoardCell> visited;
+	private String boardConfigFile;
+	private String roomConfigFile;
+	private static final Board instance = new Board();
+	private Board() {}
+	public static  Board getInstance() {
 		// TODO Auto-generated method stub
-		return null;
+		return instance;
 	}
 
 	public void setConfigFiles(String string, String string2) {
 		// TODO Auto-generated method stub
-		boardconfigFile = string;
+		boardConfigFile = string;
 		roomConfigFile = string2;
 	}
-	public void loadRoomConfig(){
-		
+	public void loadRoomConfig() throws BadConfigFormatException {
+		FileReader reader = null;
+		try {
+			reader = new FileReader(roomConfigFile);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Scanner in = new Scanner(reader);
+		while (in.hasNext()) {
+			String s = in.next();
+			char c = s.charAt(0);
+			s = in.nextLine();
+			String check = s.substring(s.indexOf(','), s.length());
+			s = s.substring(1, s.indexOf(','));
+			legend.put(c, s);
+			if (check != "Other" && check != "Card") throw new BadConfigFormatException();
+
+		}
 	}
-	public void loadBoardConfig(){
-		
+	public void loadBoardConfig() throws BadConfigFormatException{
+		FileReader reader = null;
+		try {
+			reader = new FileReader(boardConfigFile);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Scanner in = new Scanner(reader);
+		int rows = 0;
+		while (in.hasNextLine()) {
+			String s = in.nextLine();
+			int cols = 0;
+			for (int i = 0; i < s.length(); i+= 2) {
+				char c = s.charAt(i);
+				if(!legend.containsKey(c)) throw new BadConfigFormatException();
+				if(i != s.length() -1){
+					if (s.charAt(i+1) != ',') {
+						char d = s.charAt(i + 1);
+						if(d == 'U'){
+							board[rows][cols] = new BoardCell(rows, cols, c, DoorDirection.UP);
+						}
+						else if (d == 'R') {
+							board[rows][cols] = new BoardCell(rows, cols, c, DoorDirection.RIGHT);
+						}
+						else if (d == 'L') {
+							board[rows][cols] = new BoardCell(rows, cols, c, DoorDirection.LEFT);
+						}
+						else if (d == 'D') {
+							board[rows][cols] = new BoardCell(rows, cols, c, DoorDirection.DOWN);
+						}
+						i++;
+					}
+					else {
+						board[rows][cols] = new BoardCell(rows, cols, c, DoorDirection.NONE);
+					}
+				}
+				if(board[rows][cols] == null) {
+					board[rows][cols] = new BoardCell(rows, cols, c, DoorDirection.NONE);
+				}
+				cols++;
+			}
+			rows++;
+			if(numColumns != 0 && cols != numColumns) throw new BadConfigFormatException();
+			numColumns = cols;
+		}
+		numRows = rows;
 	}
 
 	public Map<Character, String> getLegend() {
-		// TODO Auto-generated method stub
+
 		return legend;
 	}
 
@@ -50,9 +117,9 @@ private String roomConfigFile;
 
 	public BoardCell getCellAt(int i, int j) {
 		// TODO Auto-generated method stub
-		return null;
+		return board[i][j];
 	}
-   
+
 	public void calcAdjacencies(){
 		for(int i = 0; i < 4; i++){
 			for(int j = 0; j < 4; j++){
@@ -89,7 +156,8 @@ private String roomConfigFile;
 		}
 	}
 
-	public void finalize(){
-		
+	public void finalize() {
+		loadRoomConfig();
+		loadBoardConfig();
 	}
 }

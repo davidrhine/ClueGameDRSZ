@@ -16,6 +16,11 @@ public BoardCell(int row, int column, char initial, DoorDirection door) {
 	this.initial = initial;
 	this.door = door;
 }
+public BoardCell(int row, int column) {
+	super();
+	this.row = row;
+	this.column = column;
+}
 public int getRow() {
 	return row;
 }
@@ -35,7 +40,8 @@ public void setColumn(int column) {
 }
 public boolean isDoorway() {
 	// TODO Auto-generated method stub
-	return false;
+	if(door == DoorDirection.NONE) return false;
+	else return true;
 }
 public boolean isWalkway() {
 	// TODO Auto-generated method stub
