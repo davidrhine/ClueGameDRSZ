@@ -1,6 +1,6 @@
 package experiments;
 
 public enum DoorDirection {
-	RIGHT, LEFT, UP, DOWN
+	RIGHT, LEFT, UP, DOWN, NONE
 
 }

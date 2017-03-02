@@ -3,14 +3,18 @@ package experiments;
 public class BoardCell {
 private int row;
 private int column;
+private char initial;
+private DoorDirection door;
 public BoardCell(){
 	row =0;
 	column = 0;
 }
-public BoardCell(int row, int column) {
+public BoardCell(int row, int column, char initial, DoorDirection door) {
 	super();
 	this.row = row;
 	this.column = column;
+	this.initial = initial;
+	this.door = door;
 }
 public int getRow() {
 	return row;
@@ -33,12 +37,23 @@ public boolean isDoorway() {
 	// TODO Auto-generated method stub
 	return false;
 }
-public Object getDoorDirection() {
+public boolean isWalkway() {
 	// TODO Auto-generated method stub
-	return null;
+	if(initial == 'W') return true;
+	else return false;
 }
-public Object getInitial() {
+public boolean isRoom() {
 	// TODO Auto-generated method stub
-	return null;
+	if(initial == 'W' || initial == 'X' ) return false;
+	else return true;
+}
+public DoorDirection getDoorDirection() {
+	return door;
+	// TODO Auto-generated method stub
+	
+}
+public char getInitial() {
+	return initial;
+	
 }
 }

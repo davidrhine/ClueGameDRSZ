@@ -1,13 +1,15 @@
 package tests;
 
 
+import static org.junit.Assert.*;
+
 /*
  * This program tests that config files are loaded properly.
  */
 
 // Doing a static import allows me to write assertEquals rather than
 // Assert.assertEquals
-import static org.junit.Assert.*;
+
 
 import java.util.Map;
 
