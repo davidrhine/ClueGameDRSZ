@@ -15,8 +15,8 @@ public final class Board {
 	private BoardCell [][] board = new BoardCell[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
 	private Map<Character, String> legend = new HashMap<Character, String>();
 	private Map<BoardCell, Set<BoardCell>> adjMatrix = new HashMap<BoardCell, Set<BoardCell>>();
-	private Set<BoardCell> targets;
-	private Set<BoardCell> visited;
+	private Set<BoardCell> targets = new HashSet<BoardCell>();
+	private Set<BoardCell> visited = new HashSet<BoardCell>();
 	private String boardConfigFile;
 	private String roomConfigFile;
 	private static final Board instance = new Board();
@@ -124,16 +124,16 @@ public final class Board {
 	}
 
 	public void calcAdjacencies(){
-		for(int i = 0; i < 4; i++){
-			for(int j = 0; j < 4; j++){
+		for(int i = 0; i < numRows; i++){
+			for(int j = 0; j < numColumns; j++){
 				Set<BoardCell> temp = new HashSet<BoardCell>();
-				if (i + 1 <= 3) {
+				if (i + 1 <= numRows - 1) {
 					temp.add(board[i + 1][j]);
 				}
 				if (i - 1 >= 0) {
 					temp.add(board[i - 1][j]);
 				}
-				if (j + 1 <= 3) {
+				if (j + 1 <= numColumns - 1) {
 					temp.add(board[i][j + 1]);
 				}
 				if (j - 1 >= 0) {
@@ -144,13 +144,15 @@ public final class Board {
 		}
 	}
 	public void calcTargets(BoardCell startCell, int pathLength){
-		visited.add(startCell);
+		int r = startCell.getRow();
+		int c = startCell.getColumn();
+		visited.add(board[r][c]);
 		if(pathLength == 0){
-			targets.add(startCell);
+			targets.add(board[r][c]);
 			return;
 		}
 		Set<BoardCell> temp = new HashSet<BoardCell>();
-		temp = adjMatrix.get(startCell);
+		temp = adjMatrix.get(board[r][c]);
 		for(BoardCell b:temp){
 			if(visited.contains(b)) continue;
 			visited.add(b);
@@ -172,6 +174,7 @@ public final class Board {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		calcAdjacencies();
 	}
 	public void initialize() {
 		// TODO Auto-generated method stub
@@ -187,6 +190,8 @@ public final class Board {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		calcAdjacencies();
 	}
 	public Set<BoardCell> getAdjList(int i, int j) {
 		// TODO Auto-generated method stub
