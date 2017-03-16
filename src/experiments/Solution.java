@@ -1,28 +1,25 @@
 package experiments;
 
-import java.util.ArrayList;
 
 public class Solution {
-	private String person;
-	private String room;
-	private String weapon;
-	private ArrayList<Card> cards;
+	private Card person;
+	private Card room;
+	private Card weapon;
 	
 	
-	public Solution(String person, String room, String weapon) {
-		super();
-		this.person = person;
-		this.room = room;
-		this.weapon = weapon;
+	public Solution(Card solutionPerson, Card solutionRoom, Card solutionWeapon) {
+		this.person = solutionPerson;
+		this.room = solutionRoom;
+		this.weapon = solutionWeapon;
 	}
 	
-	public String getPerson() {
+	public Card getPerson() {
 		return person;
 	}
-	public String getRoom() {
+	public Card getRoom() {
 		return room;
 	}
-	public String getWeapon() {
+	public Card getWeapon() {
 		return weapon;
 	}
 }

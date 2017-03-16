@@ -29,7 +29,7 @@ public class FileInitTests {
 		// set the file names to use my config files
 		board.setConfigFiles("ClueLayout.csv", "ClueLegend.txt");		
 		// Initialize will load BOTH config files 
-		board.finalize();
+		board.initialize();
 	}
 	@Test
 	public void testRooms() {

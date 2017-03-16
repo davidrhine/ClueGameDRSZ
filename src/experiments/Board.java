@@ -2,8 +2,10 @@ package experiments;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
@@ -18,11 +20,12 @@ public final class Board {
 	private Set<BoardCell> targets = new HashSet<BoardCell>();
 	private Set<BoardCell> visited = new HashSet<BoardCell>();
 	private Set<Player> players = new HashSet<Player>();
-	private Set<Card> deck = new HashSet<Card>();
+	private ArrayList<Card> deck = new ArrayList<Card>();
 	private String boardConfigFile;
 	private String roomConfigFile;
 	private String playerConfigFile;
 	private String weaponConfigFile;
+	private Solution gameSolution;
 
 	private static final Board instance = new Board();
 
@@ -41,7 +44,7 @@ public final class Board {
 		boardConfigFile = boardFile;
 		roomConfigFile = roomFile;
 	}
-	
+
 	public void setConfigFiles(String boardFile, String roomFile, String playerFile, String weaponFile) {
 		boardConfigFile = boardFile;
 		roomConfigFile = roomFile;
@@ -66,6 +69,11 @@ public final class Board {
 			legend.put(c, s);
 			if (!check.equals("Other") && !check.equals("Card")) {
 				throw new BadConfigFormatException();
+			}
+
+			if (!check.equalsIgnoreCase("other")) {
+				Card card = new Card(s, CardType.ROOM);
+				deck.add(card);
 			}
 
 		}
@@ -208,20 +216,6 @@ public final class Board {
 		}
 	}
 
-	public void finalize() {
-		try {
-			loadRoomConfig();
-		} catch (BadConfigFormatException e) {
-			e.printStackTrace();
-		}
-		try {
-			loadBoardConfig();
-		} catch (BadConfigFormatException e) {
-			e.printStackTrace();
-		}
-		calcAdjacencies();
-	}
-
 	public void initialize() {
 		try {
 			loadRoomConfig();
@@ -248,10 +242,50 @@ public final class Board {
 	}
 
 	private void loadWeaponsConfig() throws BadConfigFormatException {
+		if (weaponConfigFile == null)
+			return;
+		FileReader reader;
+		Scanner scanner;
+		try {
+			reader = new FileReader(weaponConfigFile);
+			scanner = new Scanner(reader);
+		} catch (FileNotFoundException e) {
+			throw new BadConfigFormatException();
+		}
+
+		while (scanner.hasNextLine()) {
+			String name = scanner.nextLine();
+			Card c = new Card(name, CardType.WEAPON);
+			deck.add(c);
+		}
+		scanner.close();
 
 	}
 
 	private void loadPlayersConfig() throws BadConfigFormatException {
+		if (playerConfigFile == null)
+			return;
+		FileReader reader;
+		Scanner scanner;
+		try {
+			reader = new FileReader(playerConfigFile);
+			scanner = new Scanner(reader);
+		} catch (FileNotFoundException e) {
+			throw new BadConfigFormatException();
+		}
+		while (scanner.hasNextLine()) {
+			String[] line = scanner.nextLine().split(",");
+			Player p;
+			if (line[0].equals("Professor Plum")) {
+				p = new HumanPlayer(line[0], line[1], line[2], line[3]);
+			} else {
+				p = new ComputerPlayer(line[0], line[1], line[2], line[3]);
+			}
+			players.add(p);
+			Card c = new Card(line[0], CardType.PERSON);
+			deck.add(c);
+		}
+		scanner.close();
 
 	}
 
@@ -269,11 +303,47 @@ public final class Board {
 		return targets;
 	}
 
-	public Set<Card> getDeck() {
+	public ArrayList<Card> getDeck() {
 		return deck;
 	}
 
 	public void deal() {
+		Card solutionWeapon = null;
+		Card solutionRoom = null;
+		Card solutionPerson = null;
+
+		while (true) {
+			Card c = deck.get((int) (Math.random() * deck.size()));
+
+			if (solutionWeapon == null && c.getCardType() == CardType.WEAPON) {
+				solutionWeapon = c;
+				deck.remove(c);
+			} else if (solutionPerson == null && c.getCardType() == CardType.PERSON) {
+				solutionPerson = c;
+				deck.remove(c);
+
+			} else if (solutionRoom == null && c.getCardType() == CardType.ROOM) {
+				solutionRoom = c;
+				deck.remove(c);
+			}
+
+			if (solutionRoom != null && solutionPerson != null && solutionWeapon != null) {
+				break;
+			}
+
+		}
+		gameSolution = new Solution(solutionPerson, solutionRoom, solutionWeapon);
+
+		
+		while (deck.size() > 0){
+			for (Player p : players){
+				if (deck.size() == 0) break;
+				Card c = deck.get((int)(Math.random() * deck.size()));
+				p.getCards().add(c);
+				deck.remove(c);
+			}
+		}
+		
 		
 	}
 
