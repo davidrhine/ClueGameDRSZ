@@ -1,11 +1,13 @@
 package experiments;
 
+import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
 public class ComputerPlayer extends Player {
 	BoardCell currentRoom;
-	
+	Set<Card> seen = new HashSet<Card>();
+	Solution suggestion;
 	
 	
 	public ComputerPlayer(String name, String color, String row, String col) {
@@ -15,6 +17,11 @@ public class ComputerPlayer extends Player {
 	public BoardCell pickLocation(Set<BoardCell> targets){
 		for (BoardCell b : targets){
 			if (b.isRoom() && (currentRoom == null || b.getInitial() != currentRoom.getInitial())){
+				if (b.getColumn() == 18 && b.getRow() == 4){
+					System.out.println(currentRoom);
+					System.out.println(currentRoom.getInitial());
+					System.out.println(b.getInitial());
+				}
 				move(b.getRow(), b.getColumn());
 				currentRoom = b;
 				return b;
@@ -38,6 +45,10 @@ public class ComputerPlayer extends Player {
 		
 	}
 	
+	public void revealCard(Card c){
+		seen.add(c);
+	}
+	
 	public void makeAccusation(){
 		
 	}
@@ -45,6 +56,21 @@ public class ComputerPlayer extends Player {
 	public void createSuggestion(){
 		
 	}
+
+	public Solution getSuggestion() {
+		return suggestion;
+	}
+
+	public void setSeen(Set<Card> seen) {
+		this.seen = seen;
+	}
+
+	public void setCurrentRoom(BoardCell currentRoom) {
+		this.currentRoom = currentRoom;
+	}
+	
+	
+
 	
 	
 }

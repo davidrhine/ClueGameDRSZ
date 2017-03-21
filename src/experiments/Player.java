@@ -86,6 +86,10 @@ public class Player {
 		this.row = row;
 		this.col = col;
 	}
+
+	public void setCards(Set<Card> cards) {
+		this.cards = cards;
+	}
 	
 	
 	

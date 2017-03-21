@@ -22,4 +22,44 @@ public class Solution {
 	public Card getWeapon() {
 		return weapon;
 	}
+
+	public void setPerson(Card person) {
+		this.person = person;
+	}
+
+	public void setRoom(Card room) {
+		this.room = room;
+	}
+
+	public void setWeapon(Card weapon) {
+		this.weapon = weapon;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Solution other = (Solution) obj;
+		if (person == null) {
+			if (other.person != null)
+				return false;
+		} else if (!person.equals(other.person))
+			return false;
+		if (room == null) {
+			if (other.room != null)
+				return false;
+		} else if (!room.equals(other.room))
+			return false;
+		if (weapon == null) {
+			if (other.weapon != null)
+				return false;
+		} else if (!weapon.equals(other.weapon))
+			return false;
+		return true;
+	}
 }

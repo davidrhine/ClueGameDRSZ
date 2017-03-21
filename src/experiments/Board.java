@@ -26,6 +26,9 @@ public final class Board {
 	private String playerConfigFile;
 	private String weaponConfigFile;
 	private Solution gameSolution;
+	private Set<Card> weapons = new HashSet<Card>();;
+	private Set<Card> rooms = new HashSet<Card>();
+	private Set<Card> people = new HashSet<Card>();
 
 	private static final Board instance = new Board();
 
@@ -82,6 +85,7 @@ public final class Board {
 			if (!check.equalsIgnoreCase("other")) {
 				Card card = new Card(s, CardType.ROOM);
 				deck.add(card);
+				rooms.add(card);
 			}
 
 		}
@@ -265,6 +269,7 @@ public final class Board {
 			String name = scanner.nextLine();
 			Card c = new Card(name, CardType.WEAPON);
 			deck.add(c);
+			weapons.add(c);
 		}
 		scanner.close();
 
@@ -292,9 +297,22 @@ public final class Board {
 			players.add(p);
 			Card c = new Card(line[0], CardType.PERSON);
 			deck.add(c);
+			people.add(c);
 		}
 		scanner.close();
 
+	}
+
+	public Set<Card> getWeapons() {
+		return weapons;
+	}
+
+	public Set<Card> getRooms() {
+		return rooms;
+	}
+
+	public Set<Card> getPeople() {
+		return people;
 	}
 
 	public Set<BoardCell> getAdjList(int i, int j) {
@@ -340,7 +358,7 @@ public final class Board {
 			}
 
 		}
-		gameSolution = new Solution(solutionPerson, solutionRoom, solutionWeapon);
+		setGameSolution(new Solution(solutionPerson, solutionRoom, solutionWeapon));
 
 		
 		while (deck.size() > 0){
@@ -348,11 +366,26 @@ public final class Board {
 				if (deck.size() == 0) break;
 				Card c = deck.get((int)(Math.random() * deck.size()));
 				p.getCards().add(c);
+				if (p.getClass() == ComputerPlayer.class){
+					((ComputerPlayer) p).revealCard(c);
+				}
 				deck.remove(c);
 			}
 		}
 		
 		
+	}
+	
+	public boolean checkAccusation(Solution accusation){
+		return accusation.equals(gameSolution);
+	}
+
+	public Solution getGameSolution() {
+		return gameSolution;
+	}
+
+	public void setGameSolution(Solution gameSolution) {
+		this.gameSolution = gameSolution;
 	}
 
 }
