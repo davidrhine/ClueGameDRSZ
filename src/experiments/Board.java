@@ -303,16 +303,17 @@ public final class Board {
 
 	}
 
-	public Set<Card> getWeapons() {
-		return weapons;
+	public static Set<Card> getWeapons() {
+		return getInstance().weapons;
+	}
+	
+
+	public static Set<Card> getRooms() {
+		return getInstance().rooms;
 	}
 
-	public Set<Card> getRooms() {
-		return rooms;
-	}
-
-	public Set<Card> getPeople() {
-		return people;
+	public static Set<Card> getPeople() {
+		return getInstance().people;
 	}
 
 	public Set<BoardCell> getAdjList(int i, int j) {
@@ -386,6 +387,14 @@ public final class Board {
 
 	public void setGameSolution(Solution gameSolution) {
 		this.gameSolution = gameSolution;
+	}
+	
+	public static Card getRoomWithInitial(char initial){
+		String roomname = getInstance().getLegend().get(initial);
+		for (Card c : getInstance().getRooms()){
+			if (c.getCardName().equals(roomname)) return c;
+		}
+		return null; //shouldnt happen
 	}
 
 }

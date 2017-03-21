@@ -167,6 +167,7 @@ public class GameActionTests {
 		for (ComputerPlayer p : players) {
 			if (p.getPlayerName().equals("Colonel Mustard")) {
 				p.move(10, 16);
+				p.setCurrentRoom(board.getCellAt(10, 16));
 				p.createSuggestion();
 				Solution suggestion = p.getSuggestion();
 				assertTrue(suggestion.getRoom().getCardName().equals("Storage Room"));
@@ -174,18 +175,19 @@ public class GameActionTests {
 				p.setCards(new HashSet<Card>()); //currently has seen 0 cards
 				p.setSeen(new HashSet<Card>());
 				
-				Set<Card> weapons = board.getWeapons(); //set of all weapons in the game
+				Set<Card> weapons = Board.getWeapons(); //set of all weapons in the game
 				Card weapon1 = null;
-				Card weapon2 = null;;
+				Card weapon2 = null;
 				int i = weapons.size();
 				for (Card weapon : weapons){ //this should reveal all but two weapons
-					if (i == 1){
+					if (i == 2){
 						weapon2 = weapon;
-					} else if (i == 0){
+					} else if (i == 1){
 						weapon1 = weapon;
 					} else {
 						p.revealCard(weapon);
-					}					
+					}
+					i--;
 				}
 				int total1 = 0;
 				int total2 = 0;
@@ -195,22 +197,23 @@ public class GameActionTests {
 					if (suggestion.getWeapon().equals(weapon2)) total2++;
 					if (suggestion.getWeapon().equals(weapon1)) total1++;
 				}
-				assertTrue(total1 > 0); //make sure that both of the unrevealed weapons are suggested atleast once in 10 suggestions
 				assertTrue(total2 > 0);
+				assertTrue(total1 > 0); //make sure that both of the unrevealed weapons are suggested atleast once in 10 suggestions
 				
 				
-				Set<Card> people = board.getPeople(); //set of all people in the game
+				Set<Card> people = Board.getPeople(); //set of all people in the game
 				Card person1 = null;
 				Card person2 = null;;
 				i = people.size();
 				for (Card person : people){ //this should reveal all but two people
-					if (i == 1){
+					if (i == 2){
 						person2 = person;
-					} else if (i == 0){
+					} else if (i == 1){
 						person1 = person;
 					} else {
 						p.revealCard(person);
-					}					
+					}
+					i--;
 				}
 				total1 = 0;
 				total2 = 0;
@@ -235,7 +238,7 @@ public class GameActionTests {
 				p.revealCard(person2);
 				p.createSuggestion();
 				suggestion = p.getSuggestion();
-				assertEquals(suggestion.getWeapon(), person1); //all but person 1 have now been revealed, so this should be the guess
+				assertEquals(suggestion.getPerson(), person1); //all but person 1 have now been revealed, so this should be the guess
 				
 			}
 		}
