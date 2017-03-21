@@ -41,7 +41,9 @@ public class GameActionTests {
 		for (ComputerPlayer p : players) {
 			BoardCell target;
 			if (p.getPlayerName().equals("Colonel Mustard")){ //only need to test one
-				board.calcTargets(p.getRow(), p.getCol(), 4); //4 is enough to let plum get to a room
+				p.setCol(19);
+				p.setRow(0);
+				board.calcTargets(p.getRow(), p.getCol(), 4); //4 is enough to let him get to a room
 				target = p.pickLocation(board.getTargets());
 				assertEquals(target, board.getCellAt(3, 18));
 				int total1 = 0;
@@ -49,7 +51,7 @@ public class GameActionTests {
 				for (int i = 0; i < 10; i++){		
 					p.setCol(18);
 					p.setRow(3);
-					board.calcTargets(p.getRow(), p.getCol(), 2); //plum should now be in the room, so a roll of two only lets him get out of the room and go one either up or down
+					board.calcTargets(p.getRow(), p.getCol(), 2); //him should now be in the room, so a roll of two only lets him get out of the room and go one either up or down
 					target = p.pickLocation(board.getTargets());
 					if (target.equals(board.getCellAt(2, 19))) total1++;
 					if (target.equals(board.getCellAt(4, 19))) total2++;
@@ -67,7 +69,7 @@ public class GameActionTests {
 					board.calcTargets(p.getRow(),  p.getCol(), 3); //only room 3 from the ballroom is ballroom, so should be randomly selected
 					target = p.pickLocation(board.getTargets());
 					if (target.equals(board.getCellAt(13, 6))) total1++;
-					if (target.equals(board.getCellAt(12, 17))) total2++;
+					if (target.equals(board.getCellAt(12, 7))) total2++;
 					if (target.equals(board.getCellAt(10, 7))) total3++;
 					if (target.equals(board.getCellAt(10, 5))) total4++;
 				}
@@ -88,6 +90,14 @@ public class GameActionTests {
 		}
 		
 
+	}
+	
+	
+	
+	
+	@Test
+	public void accusationTests(){
+		
 	}
 
 }

@@ -82,6 +82,11 @@ public class Player {
 		this.color = color;
 	}
 	
+	public void move(int row, int col){
+		this.row = row;
+		this.col = col;
+	}
+	
 	
 	
 }
