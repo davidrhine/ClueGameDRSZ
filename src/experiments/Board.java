@@ -39,6 +39,14 @@ public final class Board {
 	public Set<Player> getPlayers() {
 		return players;
 	}
+	
+	public Set<ComputerPlayer> getComputerPlayers() {
+		Set<ComputerPlayer> ret = new HashSet<ComputerPlayer>();
+		for (Player p : players){
+			if (p.getClass() == ComputerPlayer.class) ret.add((ComputerPlayer) p);
+		}
+		return ret;
+	}
 
 	public void setConfigFiles(String boardFile, String roomFile) {
 		boardConfigFile = boardFile;

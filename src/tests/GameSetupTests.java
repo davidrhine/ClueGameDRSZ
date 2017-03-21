@@ -26,6 +26,10 @@ public class GameSetupTests {
 	private static final int NUM_ROOMS = 9;
 	private static final int NUM_WEAPONS = 6;
 
+	/*
+	 * Initialize the board with our set up files, including players, weapons,
+	 * and the layout and rooms
+	 */
 	@BeforeClass
 	public static void initialize() {
 		board = Board.getInstance();
@@ -34,7 +38,7 @@ public class GameSetupTests {
 	}
 
 	@Test
-	public void loadPeople() {
+	public void loadPeople() { //making sure all the people are loaded correctly
 		Set<Player> players = board.getPlayers();
 		assertEquals(players.size(), NUM_PLAYERS);
 		for (Player p : players) {
@@ -82,10 +86,15 @@ public class GameSetupTests {
 		}
 	}
 
-	// not annotated as @test because we need this to run as a part of deal
-	// cards. This is because once our deck is dealt,
-	// there isnt an efficient way to test all the cards, since they have been
-	// split up between players and the solution
+	/*
+	 * not annotated as @test because we need this to run as a part of deal
+	 * cards tests. This is because once our deck is dealt, there isnt an
+	 * efficient way to test all the cards, since they have been split up
+	 * between players and the solution. Thus we must test this before the deck
+	 * is dealt. the only way to do this, since junit doesnt support ordered
+	 * tests, is making the dealtest method call this method. for this reason we
+	 * only technically have 2 tests, but dealCards test is calling this one
+	 */
 	public void createDeckTest() {
 		ArrayList<Card> deck = board.getDeck();
 
@@ -98,6 +107,7 @@ public class GameSetupTests {
 		int numWeapons = 0;
 		int numRooms = 0;
 
+		//check for a card of each type and that there are the right number of cards
 		for (Card c : deck) {
 			if (c.getCardType() == CardType.PERSON) {
 				numPlayers++;
@@ -122,6 +132,10 @@ public class GameSetupTests {
 		assertTrue(containsLounge);
 	}
 
+	/*
+	 * Call the create deck test (to check the deck has been made properly) then
+	 * execute the rest of the test to make sure the deck was dealt correctly
+	 */
 	@Test
 	public void dealCards() {
 
@@ -132,6 +146,8 @@ public class GameSetupTests {
 		assertEquals(board.getDeck().size(), 0); // all cards should be dealt
 		int numCards = 0;
 		for (Player p : board.getPlayers()) {
+			// making sure that each player has roughly the same number of
+			// cards, - 3 because 3 should have been taken out for the solution
 			boolean b = (p.getCards().size() >= (NUM_CARDS - 3) / NUM_PLAYERS);
 			assertTrue(b);
 			numCards += p.getCards().size();
