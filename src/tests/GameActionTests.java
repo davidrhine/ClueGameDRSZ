@@ -3,6 +3,7 @@ package tests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,6 +15,7 @@ import experiments.BoardCell;
 import experiments.Card;
 import experiments.CardType;
 import experiments.ComputerPlayer;
+import experiments.Player;
 import experiments.Solution;
 
 public class GameActionTests {
@@ -37,7 +39,7 @@ public class GameActionTests {
 	 */
 	@Test
 	public void selectTargetTest() {
-		Set<ComputerPlayer> players = board.getComputerPlayers();
+		ArrayList<ComputerPlayer> players = board.getComputerPlayers();
 
 		for (ComputerPlayer p : players) {
 			BoardCell target;
@@ -162,7 +164,7 @@ public class GameActionTests {
 
 	@Test
 	public void createSuggestionTests() {
-		Set<ComputerPlayer> players = board.getComputerPlayers();
+		ArrayList<ComputerPlayer> players = board.getComputerPlayers();
 
 		for (ComputerPlayer p : players) {
 			if (p.getPlayerName().equals("Colonel Mustard")) {
@@ -263,7 +265,7 @@ public class GameActionTests {
 
 	@Test
 	public void disproveSuggestion() {
-		Set<ComputerPlayer> players = board.getComputerPlayers();
+		ArrayList<ComputerPlayer> players = board.getComputerPlayers();
 
 		for (ComputerPlayer p : players) {
 			if (p.getPlayerName().equals("Colonel Mustard")) {
@@ -317,7 +319,65 @@ public class GameActionTests {
 				
 			}
 		}
+	}
+	
+	@Test
+	public void handleSuggestionTest(){
+		//custom deal
+		ArrayList<Player> players = board.getPlayers();
 
+		for (Player p : players) {
+			p.getCards().clear();
+		}
+		
+		Player human = null;
+		Player p1 = null;
+		Player p2 = null;
+		
+		for (int i = 0; i < players.size(); i++){ //dealing of cards
+			Player p = players.get(i);
+			switch (i){
+			case 0: //first person is human
+				p.getCards().add(Board.getCardWithName("Dining Room"));
+				p.getCards().add(Board.getCardWithName("Mrs White"));
+				human = p;
+				break;
+			case 1:
+				p.getCards().add(Board.getCardWithName("Dagger"));
+				p.getCards().add(Board.getCardWithName("Storage Room"));
+				p1 = p;
+				break;
+			case 2:
+				p.getCards().add(Board.getCardWithName("Candlestick"));
+				p.getCards().add(Board.getCardWithName("Reverend Green"));
+				p2 = p;
+				break;
+			case 3:
+				p.getCards().add(Board.getCardWithName("Professor Plum"));
+				p.getCards().add(Board.getCardWithName("Wrench"));
+				break;
+			}
+		}
+		
+		
+		
+		Solution noone = new Solution(Board.getCardWithName("Mrs Peacock"), Board.getCardWithName("Man Cave"), Board.getCardWithName("Rope"));
+		assertEquals(null, board.handleSuggestion(noone, p1));
+		
+		Solution onlyAccusser = new Solution(Board.getCardWithName("Mrs Peacock"), Board.getCardWithName("Storage Room"), Board.getCardWithName("Rope"));
+		assertEquals(board.handleSuggestion(onlyAccusser, p1), null);
+		
+		Solution onlyHuman = new Solution(Board.getCardWithName("Mrs White"), Board.getCardWithName("Man Cave"), Board.getCardWithName("Rope"));
+		assertEquals(board.handleSuggestion(onlyHuman, p1), Board.getCardWithName("Mrs White"));
+		
+		Solution onlyHumanAccusor = new Solution(Board.getCardWithName("Mrs White"), Board.getCardWithName("Man Cave"), Board.getCardWithName("Rope"));
+		assertEquals(board.handleSuggestion(onlyHumanAccusor, human), null);
+		
+		Solution twoDisprove = new Solution(Board.getCardWithName("Reverend Green"), Board.getCardWithName("Man Cave"), Board.getCardWithName("Dagger"));
+		assertEquals(board.handleSuggestion(twoDisprove, human), Board.getCardWithName("Dagger")); //closer player has dagger
+		
+		Solution humanAndOther =  new Solution(Board.getCardWithName("Professor Plum"), Board.getCardWithName("Dining Room"), Board.getCardWithName("Rope"));
+		assertEquals(board.handleSuggestion(humanAndOther, p1), Board.getCardWithName("Professor Plum")); //closer player has plum
 	}
 
 }

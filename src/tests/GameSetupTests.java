@@ -39,7 +39,7 @@ public class GameSetupTests {
 
 	@Test
 	public void loadPeople() { //making sure all the people are loaded correctly
-		Set<Player> players = board.getPlayers();
+		ArrayList<Player> players = board.getPlayers();
 		assertEquals(players.size(), NUM_PLAYERS);
 		for (Player p : players) {
 			switch (p.getPlayerName()) {

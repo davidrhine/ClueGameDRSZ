@@ -10,6 +10,8 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
+import sun.security.jca.GetInstance;
+
 public final class Board {
 	private int numRows;
 	private int numColumns;
@@ -19,7 +21,7 @@ public final class Board {
 	private Map<BoardCell, Set<BoardCell>> adjMatrix = new HashMap<BoardCell, Set<BoardCell>>();
 	private Set<BoardCell> targets = new HashSet<BoardCell>();
 	private Set<BoardCell> visited = new HashSet<BoardCell>();
-	private Set<Player> players = new HashSet<Player>();
+	private ArrayList<Player> players = new ArrayList<Player>();
 	private ArrayList<Card> deck = new ArrayList<Card>();
 	private String boardConfigFile;
 	private String roomConfigFile;
@@ -29,6 +31,7 @@ public final class Board {
 	private Set<Card> weapons = new HashSet<Card>();;
 	private Set<Card> rooms = new HashSet<Card>();
 	private Set<Card> people = new HashSet<Card>();
+	private Set<Card> allCards;
 
 	private static final Board instance = new Board();
 
@@ -39,14 +42,15 @@ public final class Board {
 		return instance;
 	}
 
-	public Set<Player> getPlayers() {
+	public ArrayList<Player> getPlayers() {
 		return players;
 	}
-	
-	public Set<ComputerPlayer> getComputerPlayers() {
-		Set<ComputerPlayer> ret = new HashSet<ComputerPlayer>();
-		for (Player p : players){
-			if (p.getClass() == ComputerPlayer.class) ret.add((ComputerPlayer) p);
+
+	public ArrayList<ComputerPlayer> getComputerPlayers() {
+		ArrayList<ComputerPlayer> ret = new ArrayList<ComputerPlayer>();
+		for (Player p : players) {
+			if (p.getClass() == ComputerPlayer.class)
+				ret.add((ComputerPlayer) p);
 		}
 		return ret;
 	}
@@ -291,10 +295,12 @@ public final class Board {
 			Player p;
 			if (line[0].equals("Professor Plum")) {
 				p = new HumanPlayer(line[0], line[1], line[2], line[3]);
+				players.add(0, p);
 			} else {
 				p = new ComputerPlayer(line[0], line[1], line[2], line[3]);
+				players.add(p);
 			}
-			players.add(p);
+			
 			Card c = new Card(line[0], CardType.PERSON);
 			deck.add(c);
 			people.add(c);
@@ -306,7 +312,6 @@ public final class Board {
 	public static Set<Card> getWeapons() {
 		return getInstance().weapons;
 	}
-	
 
 	public static Set<Card> getRooms() {
 		return getInstance().rooms;
@@ -361,23 +366,22 @@ public final class Board {
 		}
 		setGameSolution(new Solution(solutionPerson, solutionRoom, solutionWeapon));
 
-		
-		while (deck.size() > 0){
-			for (Player p : players){
-				if (deck.size() == 0) break;
-				Card c = deck.get((int)(Math.random() * deck.size()));
+		while (deck.size() > 0) {
+			for (Player p : players) {
+				if (deck.size() == 0)
+					break;
+				Card c = deck.get((int) (Math.random() * deck.size()));
 				p.getCards().add(c);
-				if (p.getClass() == ComputerPlayer.class){
+				if (p.getClass() == ComputerPlayer.class) {
 					((ComputerPlayer) p).revealCard(c);
 				}
 				deck.remove(c);
 			}
 		}
-		
-		
+
 	}
-	
-	public boolean checkAccusation(Solution accusation){
+
+	public boolean checkAccusation(Solution accusation) {
 		return accusation.equals(gameSolution);
 	}
 
@@ -388,13 +392,42 @@ public final class Board {
 	public void setGameSolution(Solution gameSolution) {
 		this.gameSolution = gameSolution;
 	}
-	
-	public static Card getRoomWithInitial(char initial){
+
+	public static Card getRoomWithInitial(char initial) {
 		String roomname = getInstance().getLegend().get(initial);
-		for (Card c : getInstance().getRooms()){
-			if (c.getCardName().equals(roomname)) return c;
+		for (Card c : getInstance().getRooms()) {
+			if (c.getCardName().equals(roomname))
+				return c;
 		}
-		return null; //shouldnt happen
+		return null; // shouldnt happen
+	}
+
+	public Card handleSuggestion(Solution suggestion, Player accuser) {
+
+		return null;
+	}
+	
+	public static Set<Card> getAllCards(){
+		return getInstance().allCards;
+	}
+
+	public static Card getCardWithName(String cardName) {
+		if (getAllCards() == null) {
+			getInstance().allCards = getPeople();
+			for (Card c : getRooms()) {
+				getInstance().allCards.add(c);
+			}
+			for (Card c : getWeapons()) {
+				getInstance().allCards.add(c);
+			}
+		}
+		
+		for (Card c : getInstance().allCards){
+			if (c.getCardName().equals(cardName)) return c;
+		}
+		
+		return null;
+		
 	}
 
 }
