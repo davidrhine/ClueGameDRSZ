@@ -2,7 +2,9 @@ package experiments;
 
 import java.awt.Color;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
 public class Player {
@@ -34,7 +36,22 @@ public class Player {
 
 
 	public Card disproveSolution(Solution suggestion){
-		return null;
+		Card person = suggestion.getPerson();
+		Card weapon = suggestion.getWeapon();
+		Card room = suggestion.getRoom();
+		
+		ArrayList<Card> cardsHas = new ArrayList<Card>();
+		if (getCards().contains(person)) cardsHas.add(person);
+		if (getCards().contains(weapon)) cardsHas.add(weapon);
+		if (getCards().contains(room)) cardsHas.add(room);
+		
+		if (cardsHas.size() != 0){
+			return cardsHas.get(new Random().nextInt(cardsHas.size()));
+		} else {
+			return null;
+		}
+
+		
 	}
 
 
