@@ -402,10 +402,6 @@ public final class Board {
 		return null; // shouldnt happen
 	}
 
-	public Card handleSuggestion(Solution suggestion, Player accuser) {
-
-		return null;
-	}
 	
 	public static Set<Card> getAllCards(){
 		return getInstance().allCards;
@@ -430,4 +426,24 @@ public final class Board {
 		
 	}
 
+	public Card handleSuggestion(Solution suggestion, Player accuser) {
+
+		
+		int index = players.indexOf(accuser);
+		for (int i = index + 1; i < players.size(); i++){
+			Player p = players.get(i);
+			if (p.disproveSolution(suggestion) != null){
+				return p.disproveSolution(suggestion);
+			}
+		}
+		for (int i = 0; i < index; i++){
+			Player p = players.get(i);
+			if (p.disproveSolution(suggestion) != null){
+				return p.disproveSolution(suggestion);
+			}
+		}
+		
+		
+		return null;
+	}
 }
