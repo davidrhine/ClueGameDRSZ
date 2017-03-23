@@ -11,12 +11,12 @@ import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 
-import experiments.Board;
-import experiments.Card;
-import experiments.CardType;
-import experiments.ComputerPlayer;
-import experiments.HumanPlayer;
-import experiments.Player;
+import clueGame.Board;
+import clueGame.Card;
+import clueGame.CardType;
+import clueGame.ComputerPlayer;
+import clueGame.HumanPlayer;
+import clueGame.Player;
 
 public class GameSetupTests {
 

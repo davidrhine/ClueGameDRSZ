@@ -8,9 +8,9 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import experiments.Board;
-import experiments.BoardCell;
-import experiments.DoorDirection;
+import clueGame.Board;
+import clueGame.BoardCell;
+import clueGame.DoorDirection;
 
 public class FileInitTests {
 	// Constants that I will use to test whether the file was loaded correctly

@@ -1,4 +1,4 @@
-package experiments;
+package clueGame;
 
 
 public class Solution {

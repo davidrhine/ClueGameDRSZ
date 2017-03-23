@@ -10,13 +10,13 @@ import java.util.Set;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import experiments.Board;
-import experiments.BoardCell;
-import experiments.Card;
-import experiments.CardType;
-import experiments.ComputerPlayer;
-import experiments.Player;
-import experiments.Solution;
+import clueGame.Board;
+import clueGame.BoardCell;
+import clueGame.Card;
+import clueGame.CardType;
+import clueGame.ComputerPlayer;
+import clueGame.Player;
+import clueGame.Solution;
 
 public class GameActionTests {
 

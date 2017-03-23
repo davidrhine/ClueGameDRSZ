@@ -1,4 +1,4 @@
-package experiments;
+package clueGame;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;

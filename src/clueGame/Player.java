@@ -1,4 +1,4 @@
-package experiments;
+package clueGame;
 
 import java.awt.Color;
 import java.lang.reflect.Field;

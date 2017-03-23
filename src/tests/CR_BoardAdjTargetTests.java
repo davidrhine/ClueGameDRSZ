@@ -12,8 +12,8 @@ import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import experiments.Board;
-import experiments.BoardCell;
+import clueGame.Board;
+import clueGame.BoardCell;
 
 public class CR_BoardAdjTargetTests {
 	// We make the Board static because we can load it one time and 

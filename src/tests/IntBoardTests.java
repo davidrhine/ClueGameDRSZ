@@ -7,8 +7,8 @@ import java.util.Set;
 import org.junit.Before;
 import org.junit.Test;
 
-import experiments.BoardCell;
-import experiments.IntBoard;
+import clueGame.BoardCell;
+import clueGame.IntBoard;
 
 public class IntBoardTests {
 	IntBoard board;

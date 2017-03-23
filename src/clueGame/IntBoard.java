@@ -1,4 +1,4 @@
-package experiments;
+package clueGame;
 
 import java.util.HashMap;
 import java.util.HashSet;
