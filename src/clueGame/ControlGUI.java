@@ -32,11 +32,12 @@ public class ControlGUI extends JPanel{
 
 	 private JPanel createTurnPanel() {
 		 	JPanel panel = new JPanel();
-			panel.setLayout(new GridLayout(1,4));
+			panel.setLayout(new FlowLayout());
 		 	JLabel turnLabel = new JLabel("Current turn:");
 		 	currentPlayer = new JTextField(20);
-		 	currentPlayer.setText("Miss Scarlett");
+		 	currentPlayer.setText("");
 		 	currentPlayer.setEditable(false);
+		 	currentPlayer.setPreferredSize(new Dimension(20, 20));
 			JButton nextPlayer = new JButton("Next Player");
 			JButton accusation = new JButton("Make Accusation");
 			panel.add(turnLabel);
@@ -91,7 +92,7 @@ public class ControlGUI extends JPanel{
 		JFrame frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Control GUI");
-		frame.setSize(600, 200);	
+		frame.setSize(600, 190);	
 		
 		ControlGUI gui = new ControlGUI();
 		frame.add(gui, BorderLayout.CENTER);
