@@ -121,13 +121,14 @@ public final class Board {
 				if (i != s.length() - 1) {
 					if (s.charAt(i + 1) != ',') {
 						char d = s.charAt(i + 1);
-						if (d == 'U') {
+						switch (d) {
+						case 'U':
 							board[rows][cols] = new BoardCell(rows, cols, c, DoorDirection.UP);
-						} else if (d == 'R') {
+						case 'R':
 							board[rows][cols] = new BoardCell(rows, cols, c, DoorDirection.RIGHT);
-						} else if (d == 'L') {
+						case 'L':
 							board[rows][cols] = new BoardCell(rows, cols, c, DoorDirection.LEFT);
-						} else if (d == 'D') {
+						case 'D':
 							board[rows][cols] = new BoardCell(rows, cols, c, DoorDirection.DOWN);
 						}
 						i++;
