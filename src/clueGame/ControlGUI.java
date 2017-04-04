@@ -20,7 +20,7 @@ public class ControlGUI extends JPanel{
 	private JTextField guess;
 	private JTextField guessResponse;
 
-	public ControlGUI()
+	public ControlGUI()  //main function laying out the entire GUI
 	{
 		// Create a layout with 2 rows
 		setLayout(new GridLayout(2,0));
@@ -30,7 +30,7 @@ public class ControlGUI extends JPanel{
 		add(panel);
 	}
 
-	 private JPanel createTurnPanel() {
+	 private JPanel createTurnPanel() {    // makes the panel thats displays whos turn it is
 		 	JPanel panel = new JPanel();
 			panel.setLayout(new FlowLayout());
 		 	JLabel turnLabel = new JLabel("Current turn:");
@@ -48,7 +48,7 @@ public class ControlGUI extends JPanel{
 			return panel;
 	}
 	 
-	private JPanel createInfoPanel() {
+	private JPanel createInfoPanel() { //creates the panel that displays the roll of the dice
 		JPanel panel = new JPanel();
 		panel.setLayout(new FlowLayout()); 
 		
@@ -62,7 +62,7 @@ public class ControlGUI extends JPanel{
 		diePanel.add(dieRoll);
 		
 			
-		JPanel guessPanel = new JPanel();
+		JPanel guessPanel = new JPanel();		//creates guess panel
 		guessPanel.setLayout(new GridLayout(2, 1));
 		guessPanel.setBorder(new TitledBorder (new EtchedBorder(), "Guess"));
 		guessPanel.add(new JLabel("Guess:"));
@@ -82,13 +82,13 @@ public class ControlGUI extends JPanel{
 		guessResultPanel.add(guessResponse);
 		
 		
-		panel.add(diePanel, FlowLayout.LEFT);
+		panel.add(diePanel, FlowLayout.LEFT); //Orients the GUI to our desired display
 		panel.add(guessPanel, FlowLayout.CENTER);
 		panel.add(guessResultPanel, FlowLayout.RIGHT);
 		return panel;
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) { //actually making the GUI
 		JFrame frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Control GUI");
