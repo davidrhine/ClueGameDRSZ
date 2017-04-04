@@ -15,19 +15,24 @@ import sun.security.jca.GetInstance;
 public final class Board {
 	private int numRows;
 	private int numColumns;
+	
 	public static final int MAX_BOARD_SIZE = 50;
+	
 	private BoardCell[][] board = new BoardCell[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
 	private Map<Character, String> legend = new HashMap<Character, String>();
 	private Map<BoardCell, Set<BoardCell>> adjMatrix = new HashMap<BoardCell, Set<BoardCell>>();
-	private Set<BoardCell> targets = new HashSet<BoardCell>();
-	private Set<BoardCell> visited = new HashSet<BoardCell>();
 	private ArrayList<Player> players = new ArrayList<Player>();
 	private ArrayList<Card> deck = new ArrayList<Card>();
+	
 	private String boardConfigFile;
 	private String roomConfigFile;
 	private String playerConfigFile;
 	private String weaponConfigFile;
+	
 	private Solution gameSolution;
+
+	private Set<BoardCell> targets = new HashSet<BoardCell>();
+	private Set<BoardCell> visited = new HashSet<BoardCell>();
 	private Set<Card> weapons = new HashSet<Card>();;
 	private Set<Card> rooms = new HashSet<Card>();
 	private Set<Card> people = new HashSet<Card>();
