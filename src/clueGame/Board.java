@@ -47,12 +47,12 @@ public final class Board {
 	}
 
 	public ArrayList<ComputerPlayer> getComputerPlayers() {
-		ArrayList<ComputerPlayer> ret = new ArrayList<ComputerPlayer>();
+		ArrayList<ComputerPlayer> compPlayer = new ArrayList<ComputerPlayer>();
 		for (Player p : players) {
 			if (p.getClass() == ComputerPlayer.class)
-				ret.add((ComputerPlayer) p);
+				compPlayer.add((ComputerPlayer) p);
 		}
-		return ret;
+		return compPlayer;
 	}
 
 	public void setConfigFiles(String boardFile, String roomFile) {

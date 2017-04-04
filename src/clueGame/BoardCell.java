@@ -6,7 +6,7 @@ private int column;
 private char initial;
 private DoorDirection door;
 public BoardCell(){
-	row =0;
+	row = 0;
 	column = 0;
 }
 public BoardCell(int row, int column, char initial, DoorDirection door) {
@@ -24,7 +24,6 @@ public BoardCell(int row, int column) {
 public int getRow() {
 	return row;
 }
-
 @Override
 public String toString() {
 	return "BoardCell [row=" + row + ", column=" + column + "]";
