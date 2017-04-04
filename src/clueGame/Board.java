@@ -101,6 +101,7 @@ public final class Board {
 			reader = new FileReader(boardConfigFile);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
+			e.getMessage();
 		}
 		Scanner in = new Scanner(reader);
 		int rows = 0;
@@ -111,7 +112,7 @@ public final class Board {
 
 				char c = s.charAt(i);
 				if (!legend.containsKey(c))
-					throw new BadConfigFormatException();
+					throw new BadConfigFormatException("Could not load file");
 				if (i != s.length() - 1) {
 					if (s.charAt(i + 1) != ',') {
 						char d = s.charAt(i + 1);
