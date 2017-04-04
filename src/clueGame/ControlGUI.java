@@ -49,8 +49,8 @@ public class ControlGUI extends JPanel{
 	}
 	 
 	private JPanel createInfoPanel() { //creates the panel that displays the roll of the dice
-		JPanel panel = new JPanel();
-		panel.setLayout(new FlowLayout()); 
+		JPanel masterPanel = new JPanel();
+		masterPanel.setLayout(new FlowLayout()); 
 		
 		JPanel diePanel = new JPanel();
 		diePanel.setLayout(new FlowLayout());
@@ -82,10 +82,10 @@ public class ControlGUI extends JPanel{
 		guessResultPanel.add(guessResponse);
 		
 		
-		panel.add(diePanel, FlowLayout.LEFT); //Orients the GUI to our desired display
-		panel.add(guessPanel, FlowLayout.CENTER);
-		panel.add(guessResultPanel, FlowLayout.RIGHT);
-		return panel;
+		masterPanel.add(diePanel, FlowLayout.LEFT); //Orients the GUI to our desired display
+		masterPanel.add(guessPanel, FlowLayout.CENTER);
+		masterPanel.add(guessResultPanel, FlowLayout.RIGHT);
+		return masterPanel;
 	}
 	
 	public static void main(String[] args) { //actually making the GUI
