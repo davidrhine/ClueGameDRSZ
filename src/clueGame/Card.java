@@ -1,17 +1,17 @@
 package clueGame;
 
-public class Card {
+public class Card {  //card Class
 	private String cardName;
 	private CardType cardType;
 
-	public Card(String name, CardType cardType) {
+	public Card(String name, CardType cardType) { //setting the card name
 
 		cardName = name;
 		this.cardType = cardType;
 
 	}
 
-	public String getCardName() {
+	public String getCardName() { //to string function for the card name
 		return cardName;
 	}
 
@@ -19,11 +19,11 @@ public class Card {
 		this.cardName = cardName;
 	}
 
-	public CardType getCardType() {
+	public CardType getCardType() { //returns the card type
 		return cardType;
 	}
 
-	public void setCardType(CardType cardType) {
+	public void setCardType(CardType cardType) {//setter for card type
 		this.cardType = cardType;
 	}
 
