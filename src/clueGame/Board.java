@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import sun.security.jca.GetInstance;
@@ -461,6 +462,15 @@ public final class Board extends JPanel {
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		g.drawString("LOUNGE", 25, 50);
+		g.drawString("KITCHEN", 200, 50);
+		g.drawString("DINING ROOM", 350, 50);
+		g.drawString("THEATER", 515, 50);
+		g.drawString("BALLROOM", 25, 250);
+		g.drawString("STORAGE ROOM", 450, 300);
+		g.drawString("READING ROOM", 25, 500);
+		g.drawString("OFFICE", 300, 500);
+		g.drawString("CLOSET", 480, 500);
 		for (int rows = 0; rows < getNumRows(); rows++) {
 			for (int cols = 0; cols < getNumColumns(); cols++) {
 				board[rows][cols].drawBoardCell(g);

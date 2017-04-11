@@ -36,26 +36,40 @@ public class BoardCell {
 		case 'W':
 			
 			g.setColor(Color.CYAN);
-			g.drawRect(this.row * 25, this.column * 25, 25, 25);
-			g.fillRect(this.row * 25, this.column * 25, 25, 25);
+			g.drawRect(this.column * 25, this.row * 25, 25, 25);
+			g.fillRect(this.column * 25, this.row * 25, 25, 25);
 			g.setColor(Color.black);
-			g.drawRect(this.row * 25, this.column * 25, 25, 25);
+			g.drawRect(this.column * 25, this.row * 25, 25, 25);
 			break;
 		case 'X':
 			g.setColor(Color.RED);
-			g.drawRect(this.row * 25, this.column * 25, 25, 25);
-			g.fillRect(this.row * 25, this.column * 25, 25, 25);
+			g.drawRect(this.column * 25, this.row * 25, 25, 25);
+			g.fillRect(this.column * 25, this.row * 25, 25, 25);
 			g.setColor(Color.black);
-			g.drawRect(this.row * 25, this.column * 25, 25, 25);
+			g.drawRect(this.column * 25, this.row * 25, 25, 25);
 			break;
 		}
 		if (this.door != DoorDirection.NONE) {	
 			
 			if (this.door == DoorDirection.UP) {
-				System.out.println(this.door);
 				g.setColor(Color.green);
-				g.drawRect(this.row * 25, this.column * 25, 25, 3);
-				g.fillRect(this.row * 25, this.column * 25, 25, 3);
+				g.drawRect(this.column * 25, this.row * 25, 25, 3);
+				g.fillRect(this.column * 25, this.row * 25, 25, 3);
+			}
+			if (this.door == DoorDirection.LEFT) {
+				g.setColor(Color.green);
+				g.drawRect(this.column * 25, this.row * 25, 3, 25);
+				g.fillRect(this.column * 25, this.row * 25, 3, 25);
+			}
+			if (this.door == DoorDirection.RIGHT) {
+				g.setColor(Color.green);
+				g.drawRect(this.column * 25 + 22, this.row * 25, 3, 25);
+				g.fillRect(this.column * 25 + 22, this.row * 25, 3, 25);
+			}
+			if (this.door == DoorDirection.DOWN) {
+				g.setColor(Color.green);
+				g.drawRect(this.column * 25, this.row * 25 + 22, 25, 3);
+				g.fillRect(this.column * 25, this.row * 25 + 22, 25, 3);
 			}
 		}
 	}
