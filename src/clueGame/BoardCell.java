@@ -1,77 +1,113 @@
 package clueGame;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Graphics;
+
+
+
 public class BoardCell {
-private int row;
-private int column;
-private char initial;
-private DoorDirection door;
-public BoardCell(){
-	row = 0;
-	column = 0;
-}
+	private int row;
+	private int column;
+	private char initial;
+	private DoorDirection door;
+	//BorderLayout blackLine = BorderFactory.createLineBorder(Color.black);
+	public BoardCell(){
+		row = 0;
+		column = 0;
+	}
 
-public BoardCell(int row, int column, char initial, DoorDirection door) {
-	super();
-	this.row = row;
-	this.column = column;
-	this.initial = initial;
-	this.door = door;
-}
+	public BoardCell(int row, int column, char initial, DoorDirection door) {
+		super();
+		this.row = row;
+		this.column = column;
+		this.initial = initial;
+		this.door = door;
+	}
 
-public BoardCell(int row, int column) {
-	super();
-	this.row = row;
-	this.column = column;
-}
-
-public int getRow() {
-	return row;
-}
-
-@Override
-public String toString() {
-	return "BoardCell [row=" + row + ", column=" + column + "]";
-}
-
-public void setRow(int row) {
-	this.row = row;
-}
-
-public int getColumn() {
-	return column;
-}
-
-public void setColumn(int column) {
-	this.column = column;
-}
-
-public boolean isDoorway() {
+	public BoardCell(int row, int column) {
+		super();
+		this.row = row;
+		this.column = column;
+	}
 	
-	if(door == DoorDirection.NONE) return false;
-	else return true;
-}
+	public void drawBoardCell(Graphics g) {
+		switch (this.initial) {
+		case 'W':
+			
+			g.setColor(Color.CYAN);
+			g.drawRect(this.row * 25, this.column * 25, 25, 25);
+			g.fillRect(this.row * 25, this.column * 25, 25, 25);
+			g.setColor(Color.black);
+			g.drawRect(this.row * 25, this.column * 25, 25, 25);
+			break;
+		case 'X':
+			g.setColor(Color.RED);
+			g.drawRect(this.row * 25, this.column * 25, 25, 25);
+			g.fillRect(this.row * 25, this.column * 25, 25, 25);
+			g.setColor(Color.black);
+			g.drawRect(this.row * 25, this.column * 25, 25, 25);
+			break;
+		}
+		if (this.door != DoorDirection.NONE) {	
+			
+			if (this.door == DoorDirection.UP) {
+				System.out.println(this.door);
+				g.setColor(Color.green);
+				g.drawRect(this.row * 25, this.column * 25, 25, 3);
+				g.fillRect(this.row * 25, this.column * 25, 25, 3);
+			}
+		}
+	}
 
-public boolean isWalkway() {
-	
-	if(initial == 'W') return true;
-	else return false;
-}
+	public int getRow() {
+		return row;
+	}
 
-public boolean isRoom() {
-	
-	if(initial == 'W' || initial == 'X' ) return false;
-	else return true;
-}
+	@Override
+	public String toString() {
+		return "BoardCell [row=" + row + ", column=" + column + "]";
+	}
 
-public DoorDirection getDoorDirection() {
-	return door;
-	
-	
-}
+	public void setRow(int row) {
+		this.row = row;
+	}
 
-public char getInitial() {
-	return initial;
-	
+	public int getColumn() {
+		return column;
+	}
+
+	public void setColumn(int column) {
+		this.column = column;
+	}
+
+	public boolean isDoorway() {
+
+		if(door == DoorDirection.NONE) return false;
+		else return true;
+	}
+
+	public boolean isWalkway() {
+
+		if(initial == 'W') return true;
+		else return false;
+	}
+
+	public boolean isRoom() {
+
+		if(initial == 'W' || initial == 'X' ) return false;
+		else return true;
+	}
+
+	public DoorDirection getDoorDirection() {
+		return door;
+
+
+	}
+
+	public char getInitial() {
+		return initial;
+
 	}
 
 }

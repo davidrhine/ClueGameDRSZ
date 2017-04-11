@@ -1,5 +1,7 @@
 package clueGame;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -10,25 +12,27 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
+import javax.swing.JPanel;
+
 import sun.security.jca.GetInstance;
 
-public final class Board {
+public final class Board extends JPanel {
 	private int numRows;
 	private int numColumns;
-	
+
 	public static final int MAX_BOARD_SIZE = 50;
-	
+
 	private BoardCell[][] board = new BoardCell[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
 	private Map<Character, String> legend = new HashMap<Character, String>();
 	private Map<BoardCell, Set<BoardCell>> adjMatrix = new HashMap<BoardCell, Set<BoardCell>>();
 	private ArrayList<Player> players = new ArrayList<Player>();
 	private ArrayList<Card> deck = new ArrayList<Card>();
-	
+
 	private String boardConfigFile;
 	private String roomConfigFile;
 	private String playerConfigFile;
 	private String weaponConfigFile;
-	
+
 	private Solution gameSolution;
 
 	private Set<BoardCell> targets = new HashSet<BoardCell>();
@@ -40,12 +44,14 @@ public final class Board {
 
 	private static final Board instance = new Board();
 
-	private Board() {
+	Board() {
 	}
 
 	public static Board getInstance() {
 		return instance;
 	}
+
+
 
 	public ArrayList<Player> getPlayers() {
 		return players;
@@ -117,18 +123,17 @@ public final class Board {
 
 				char c = s.charAt(i);
 				if (!legend.containsKey(c))
-					throw new BadConfigFormatException("Could not load file");
+					throw new BadConfigFormatException();
 				if (i != s.length() - 1) {
 					if (s.charAt(i + 1) != ',') {
 						char d = s.charAt(i + 1);
-						switch (d) {
-						case 'U':
+						if (d == 'U') {
 							board[rows][cols] = new BoardCell(rows, cols, c, DoorDirection.UP);
-						case 'R':
+						} else if (d == 'R') {
 							board[rows][cols] = new BoardCell(rows, cols, c, DoorDirection.RIGHT);
-						case 'L':
+						} else if (d == 'L') {
 							board[rows][cols] = new BoardCell(rows, cols, c, DoorDirection.LEFT);
-						case 'D':
+						} else if (d == 'D') {
 							board[rows][cols] = new BoardCell(rows, cols, c, DoorDirection.DOWN);
 						}
 						i++;
@@ -307,7 +312,7 @@ public final class Board {
 				p = new ComputerPlayer(line[0], line[1], line[2], line[3]);
 				players.add(p);
 			}
-			
+
 			Card c = new Card(line[0], CardType.PERSON);
 			deck.add(c);
 			people.add(c);
@@ -409,7 +414,7 @@ public final class Board {
 		return null; // shouldnt happen
 	}
 
-	
+
 	public static Set<Card> getAllCards(){
 		return getInstance().allCards;
 	}
@@ -424,18 +429,18 @@ public final class Board {
 				getInstance().allCards.add(c);
 			}
 		}
-		
+
 		for (Card c : getInstance().allCards){
 			if (c.getCardName().equals(cardName)) return c;
 		}
-		
+
 		return null;
-		
+
 	}
 
 	public Card handleSuggestion(Solution suggestion, Player accuser) {
 
-		
+
 		int index = players.indexOf(accuser);
 		for (int i = index + 1; i < players.size(); i++){
 			Player p = players.get(i);
@@ -449,8 +454,17 @@ public final class Board {
 				return p.disproveSolution(suggestion);
 			}
 		}
-		
-		
+
+
 		return null;
+	}
+
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		for (int rows = 0; rows < getNumRows(); rows++) {
+			for (int cols = 0; cols < getNumColumns(); cols++) {
+				board[rows][cols].drawBoardCell(g);
+			}
+		}
 	}
 }

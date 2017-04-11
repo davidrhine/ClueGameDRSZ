@@ -92,7 +92,7 @@ public class ControlGUI extends JPanel{
 		JFrame frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Control GUI");
-		frame.setSize(600, 190);	
+		frame.setSize(800, 190);	
 		
 		ControlGUI gui = new ControlGUI();
 		frame.add(gui, BorderLayout.CENTER);
