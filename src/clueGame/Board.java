@@ -462,6 +462,7 @@ public final class Board extends JPanel {
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		
 		g.drawString("LOUNGE", 25, 50);
 		g.drawString("KITCHEN", 200, 50);
 		g.drawString("DINING ROOM", 350, 50);
@@ -475,6 +476,9 @@ public final class Board extends JPanel {
 			for (int cols = 0; cols < getNumColumns(); cols++) {
 				board[rows][cols].drawBoardCell(g);
 			}
+		}
+		for (int k = 0; k < players.size(); k++) {
+			players.get(k).drawPlayer(g);
 		}
 	}
 }

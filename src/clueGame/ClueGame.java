@@ -15,9 +15,9 @@ import javax.swing.JPanel;
 public class ClueGame extends JFrame{
 	Board board;
 	private DetectiveNotesDialog Detective;
-	
+
 	public ClueGame() {
-		
+
 		setSize(800, 815);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		board = new Board();
@@ -28,20 +28,20 @@ public class ClueGame extends JFrame{
 		setJMenuBar(menuBar);
 		menuBar.add(FileMenu());
 	}
-	
+
 	private JMenu FileMenu() {
 		JMenu menu = new JMenu("File");
 		menu.add(DetectiveOption());
-	//	menu.add(ExitOption());
+		menu.add(ExitOption());
 		return menu;
 	}
-	
+
 	private JMenuItem DetectiveOption() {
 		JMenuItem option = new JMenuItem("Detective Notes");
 		class MenuItemListener implements ActionListener {
-			
+
 			@Override
-			
+
 			public void actionPerformed(ActionEvent arg0) {
 				Detective = new DetectiveNotesDialog();
 				Detective.setVisible(true);
@@ -50,10 +50,24 @@ public class ClueGame extends JFrame{
 		option.addActionListener(new MenuItemListener());
 		return option;
 	}
-	
+
+	private JMenuItem ExitOption() {
+		JMenuItem option = new JMenuItem("Exit");
+		class MenuItemListener implements ActionListener {
+
+			@Override
+
+			public void actionPerformed(ActionEvent arg0) {
+				System.exit(0);
+			}
+		}
+		option.addActionListener(new MenuItemListener());
+		return option;
+	}
+
 	public static void main(String[] args) {
 		ClueGame game = new ClueGame();
-	
+
 		game.setVisible(true);
 	}
 }

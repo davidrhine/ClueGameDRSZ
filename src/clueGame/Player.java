@@ -1,6 +1,7 @@
 package clueGame;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -32,6 +33,12 @@ public class Player {
 	        color = null; // Not defined  
 	    }
 	    return color;
+	}
+	
+	public void drawPlayer(Graphics g) {
+		g.setColor(this.color);
+		g.drawOval(col * 25, row * 25, 25, 25);
+		g.fillOval(col * 25, row * 25, 25, 25);
 	}
 
 
