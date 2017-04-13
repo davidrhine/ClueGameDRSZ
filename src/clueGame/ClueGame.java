@@ -17,6 +17,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
@@ -32,19 +33,19 @@ public class ClueGame extends JFrame{
 	private ArrayList<String> person;
 	private ArrayList<String> rooms;
 	private ArrayList<String> weapon;
-	JTextField peopleText;
-	JTextField roomsText;
-	JTextField weaponsText;
+	JTextArea peopleText;
+	JTextArea roomsText;
+	JTextArea weaponsText;
 
 	public ClueGame() {
 		ControlGUI gui = new ControlGUI();
-		setSize(800, 815);
+		setSize(900, 900);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		board = new Board();
 		board.setConfigFiles("ClueLayout.csv", "ClueLegend.txt", "CluePlayers.txt", "ClueWeapons.txt");
 		board.initialize();
 		board.deal();
-		System.out.println(board.getPlayers());
+		
 		players = board.getPlayers();
 		
 		cardsGUI = new JPanel();
@@ -58,7 +59,7 @@ public class ClueGame extends JFrame{
 		Set<Card> tempCards = new HashSet();
 		Player p = players.get(1);
 		tempCards = p.getCards();
-		System.out.println(tempCards);
+		
 		person = new ArrayList<String>();
 		rooms = new ArrayList<String>();
 		weapon = new ArrayList<String>();
@@ -135,12 +136,13 @@ public class ClueGame extends JFrame{
 
 	private JPanel WeaponPanel() {
 		JPanel Card = new JPanel();
-		weaponsText = new JTextField(10);
-		System.out.println(weapon);
+		weaponsText = new JTextArea(10,10);
+		
 		String weaponsOutput = "";
 		for (String w : weapon) {
 			weaponsOutput += w + "\n";
 		}
+		
 		weaponsText.setText(weaponsOutput);
 		weaponsText.setEditable(true);
 		weaponsText.setPreferredSize(new Dimension(20, 20));
@@ -152,13 +154,13 @@ public class ClueGame extends JFrame{
 
 	private JPanel PeoplePanel() {
 		JPanel people = new JPanel();
-		peopleText = new JTextField(10);
+		peopleText = new JTextArea(10,10);
 		String peopleOutput = "";
 		for (String w : person) {
 			peopleOutput += w + "\n";
 		}
-		System.out.println(peopleOutput);
-		weaponsText.setText(peopleOutput);
+		
+		peopleText.setText(peopleOutput);
 		peopleText.setEditable(true);
 		peopleText.setPreferredSize(new Dimension(20, 20));
 		people.setBorder(new TitledBorder (new EtchedBorder(), "People"));
@@ -170,12 +172,12 @@ public class ClueGame extends JFrame{
 
 	private JPanel RoomPanel() {
 		JPanel room = new JPanel();
-		roomsText = new JTextField(10);
+		roomsText = new JTextArea(10,10);
 		String roomsOutput = "";
 		for (String w : rooms) {
 			roomsOutput += w + "\n";
 		}
-		weaponsText.setText(roomsOutput);
+		roomsText.setText(roomsOutput);
 		roomsText.setEditable(true);
 		roomsText.setPreferredSize(new Dimension(20, 20));
 		room.setBorder(new TitledBorder (new EtchedBorder(), "Rooms"));
