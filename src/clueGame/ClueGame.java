@@ -24,7 +24,7 @@ import javax.swing.border.TitledBorder;
 
 public class ClueGame extends JFrame{
 	Board board;
-	private JPanel cardsGUI;
+	private MyCardsGUI cardsGUI;
 	private DetectiveNotesDialog Detective;
 	static String message = "You are Professor Plum, press Next Player to begin play";
 	static String title = "Welcome to Clue";
@@ -48,42 +48,13 @@ public class ClueGame extends JFrame{
 		
 		players = board.getPlayers();
 		
-		cardsGUI = new JPanel();
+		cardsGUI = new MyCardsGUI(players.get(1));
 		cardsGUI.setBorder(new TitledBorder (new EtchedBorder(), "My Cards"));
 		add(board, BorderLayout.CENTER);
 		add(gui, BorderLayout.SOUTH);
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		menuBar.add(FileMenu());
-
-		Set<Card> tempCards = new HashSet();
-		Player p = players.get(1);
-		tempCards = p.getCards();
-		
-		person = new ArrayList<String>();
-		rooms = new ArrayList<String>();
-		weapon = new ArrayList<String>();
-		for (Card c : tempCards) {
-			if (c.getCardType() == CardType.PERSON) {
-				person.add(c.getCardName());
-			}
-			else if (c.getCardType() == CardType.ROOM) {
-				rooms.add(c.getCardName());
-			}
-			else if (c.getCardType() == CardType.WEAPON) {
-				weapon.add( c.getCardName());
-			}
-		}
-
-
-		JPanel main = PeoplePanel();
-		cardsGUI.add(main);
-		main = RoomPanel();
-		cardsGUI.add(main);
-		main = WeaponPanel();
-		cardsGUI.add(main);
-		cardsGUI.setLayout(new GridLayout(3,1));
-		cardsGUI.setSize(10,300);
 		add(cardsGUI, BorderLayout.EAST);
 	}
 
@@ -131,76 +102,5 @@ public class ClueGame extends JFrame{
 		pane.showMessageDialog(game, message, title, JOptionPane.INFORMATION_MESSAGE);
 		game.setVisible(true);
 	}
-
-
-
-	private JPanel WeaponPanel() {
-		JPanel Card = new JPanel();
-		weaponsText = new JTextArea(10,10);
-		
-		String weaponsOutput = "";
-		for (String w : weapon) {
-			weaponsOutput += w + "\n";
-		}
-		
-		weaponsText.setText(weaponsOutput);
-		weaponsText.setEditable(true);
-		weaponsText.setPreferredSize(new Dimension(20, 20));
-		Card.setBorder(new TitledBorder (new EtchedBorder(), "Weapons"));
-		Card.add(weaponsText);
-		
-		return Card;	
-	}
-
-	private JPanel PeoplePanel() {
-		JPanel people = new JPanel();
-		peopleText = new JTextArea(10,10);
-		String peopleOutput = "";
-		for (String w : person) {
-			peopleOutput += w + "\n";
-		}
-		
-		peopleText.setText(peopleOutput);
-		peopleText.setEditable(true);
-		peopleText.setPreferredSize(new Dimension(20, 20));
-		people.setBorder(new TitledBorder (new EtchedBorder(), "People"));
-		people.add(peopleText);
-		
-		return people;
-
-	}
-
-	private JPanel RoomPanel() {
-		JPanel room = new JPanel();
-		roomsText = new JTextArea(10,10);
-		String roomsOutput = "";
-		for (String w : rooms) {
-			roomsOutput += w + "\n";
-		}
-		roomsText.setText(roomsOutput);
-		roomsText.setEditable(true);
-		roomsText.setPreferredSize(new Dimension(20, 20));
-		room.setBorder(new TitledBorder (new EtchedBorder(), "Rooms"));
-		room.add(roomsText);
-		return room;
-	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
