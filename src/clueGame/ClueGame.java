@@ -30,13 +30,6 @@ public class ClueGame extends JFrame{
 	static String title = "Welcome to Clue";
 	private ArrayList<Player> players;
 
-	private ArrayList<String> person;
-	private ArrayList<String> rooms;
-	private ArrayList<String> weapon;
-	JTextArea peopleText;
-	JTextArea roomsText;
-	JTextArea weaponsText;
-
 	public ClueGame() {
 		ControlGUI gui = new ControlGUI();
 		setSize(900, 900);

@@ -30,7 +30,7 @@ public class ControlGUI extends JPanel{
 		add(panel);
 	}
 
-	 private JPanel createTurnPanel() {    // makes the panel thats displays whos turn it is
+	 private JPanel createTurnPanel() {    // makes the panel thats displays whose turn it is
 		 	JPanel panel = new JPanel();
 			panel.setLayout(new FlowLayout());
 		 	JLabel turnLabel = new JLabel("Current turn:");
