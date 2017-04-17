@@ -1,0 +1,227 @@
+commit d65661dcaffd70895aaec77201935428c272e82c
+Author: David Rhine <drhine@mines.edu>
+Date:   Mon Apr 10 20:27:24 2017 -0600
+
+    players included, pair programming
+
+commit c5d679c0bb1a89e1aa7564f508cde12a7bb8f1e8
+Author: David Rhine <drhine@mines.edu>
+Date:   Mon Apr 10 20:12:21 2017 -0600
+
+    created detective notes, still pair programming
+
+commit 6464294d9b92bbb7c7264ff9aaf58242a4dbefc5
+Author: David Rhine <drhine@mines.edu>
+Date:   Mon Apr 10 18:48:24 2017 -0600
+
+    rooms properly labeled
+
+commit 6cb5e171042ac6b91bf8e2095a3de147098c6e8a
+Author: David Rhine <drhine@mines.edu>
+Date:   Mon Apr 10 18:08:53 2017 -0600
+
+    board setup complete with pair programming
+
+commit c60ad984fd98f551d6d5b3fbd15a1078d630a409
+Author: Sean Zusi <szusi@mymail.mines.edu>
+Date:   Tue Apr 4 16:31:28 2017 -0600
+
+    made panel names more discriptive
+
+commit 89025e2b20ef697d392b87e284eb42011160e67e
+Author: Sean Zusi <szusi@mymail.mines.edu>
+Date:   Tue Apr 4 16:24:32 2017 -0600
+
+    changed a part of LoadBoardConfig from multiple else if statements to a switch
+
+commit 37026b5c774222403f78322b60935362325016cd
+Author: Sean Zusi <szusi@mymail.mines.edu>
+Date:   Tue Apr 4 16:15:17 2017 -0600
+
+    reorganized naming and placement of variables
+
+commit b3e5923599df914865235de12b0c95bcef1cbc63
+Author: Sean Zusi <szusi@mymail.mines.edu>
+Date:   Tue Apr 4 16:10:08 2017 -0600
+
+    cleaned up whitespace and unneeded comments in BoardCell
+
+commit d2c74a2df0e53367201c290c145e34a4d38b3ab8
+Author: Sean Zusi <szusi@mymail.mines.edu>
+Date:   Tue Apr 4 16:07:51 2017 -0600
+
+    Made BadConfig exception print a message
+
+commit 13c2f0a6a07b3a1b9cc6e5f65cbdd1be2f8bb14d
+Author: Sean Zusi <szusi@mymail.mines.edu>
+Date:   Tue Apr 4 16:00:08 2017 -0600
+
+    changed poor naming of variables
+
+commit 71cb116f781a6726569493d33b6420b453cf98ba
+Author: Sean Zusi <szusi@mymail.mines.edu>
+Date:   Tue Apr 4 15:44:44 2017 -0600
+
+    added comments to the Card Class
+
+commit e98180e87ed8bf0383af695e924fc6e25e526d6a
+Author: Sean Zusi <szusi@mymail.mines.edu>
+Date:   Tue Apr 4 15:41:17 2017 -0600
+
+    added comments to the GUI file
+
+commit a09d021ab4fad8dddf8792a2b4a1bcba63353079
+Author: Jacob Granley <jgranley@mines.edu>
+Date:   Thu Mar 23 16:31:16 2017 -0600
+
+    Finished control gui
+
+commit 271bd0ae7f5c2d1a634ec88b9ce4d8a536596579
+Author: Jacob Granley <jgranley@mines.edu>
+Date:   Thu Mar 23 15:35:20 2017 -0600
+
+    Added control gui
+
+commit bd9abc1bb2661d2b9cf8ae33c6c1116758d30182
+Author: Jacob Granley <jgranley@mines.edu>
+Date:   Tue Mar 21 19:08:05 2017 -0600
+
+    Finished all passing tests in gameactiontests
+
+commit 6c72d2080f969d6a0844341ffb14d642970c697e
+Author: Jacob Granley <jgranley@mines.edu>
+Date:   Tue Mar 21 19:00:56 2017 -0600
+
+    added failing tests for handleSuggestion
+
+commit 3e35762a2b4c02f6c5188021b5ff4aabebcaa67a
+Author: Jacob Granley <jgranley@mines.edu>
+Date:   Tue Mar 21 18:20:31 2017 -0600
+
+    made tests pass for disprove suggestion
+
+commit d3cb98cef3d5def91dd66baf5d9d435758ee623f
+Author: Jacob Granley <jgranley@mines.edu>
+Date:   Tue Mar 21 18:13:41 2017 -0600
+
+    made failing test for disprovbe solution
+
+commit 94f1acdd15845f22e8570302ac22bf0543c943ca
+Author: Jacob Granley <jgranley@mines.edu>
+Date:   Tue Mar 21 17:54:31 2017 -0600
+
+    made test pass for create suggestion
+
+commit 52ff1af31ce9001eab43aba8171988d1c7319aea
+Author: Jacob Granley <jgranley@mines.edu>
+Date:   Tue Mar 21 17:17:50 2017 -0600
+
+    failing suggestion test added
+
+commit 818195905d9c47509bb7c0e56915b910a17eedae
+Author: Jacob Granley <jgranley@mines.edu>
+Date:   Tue Mar 21 15:57:06 2017 -0600
+
+    Passed target choosing tests
+
+commit 456f7f03174bd5acbd2f1bbaa3d2d66bd1df6b66
+Author: Jacob Granley <jgranley@mymail.mines.edu>
+Date:   Tue Mar 21 15:24:01 2017 -0600
+
+    added failing test for target choosing
+
+commit 5334447d0ad0d5b393b70fd6b3ec226c9dac0497
+Author: Jacob Granley <jgranley@mines.edu>
+Date:   Thu Mar 16 17:58:15 2017 -0600
+
+    Completed tests for game initialization
+
+commit a0ce9746bcd65ad40977fff8de6958f8e8cc745e
+Author: Jacob Granley <jgranley@mines.edu>
+Date:   Thu Mar 16 16:51:08 2017 -0600
+
+    Added failing tests for game configuration
+
+commit 93c7d92782429369023f4f63b8155441ce65fbdf
+Author: Sean Rozowski <srozowski25@gmail.com>
+Date:   Tue Mar 7 20:39:28 2017 -0700
+
+    Commiting xlsx file
+
+commit 14996f360b9a6255ec5b4bfc2e26be851426dcad
+Author: Sean Rozowski <srozowski25@gmail.com>
+Date:   Tue Mar 7 20:38:40 2017 -0700
+
+    Finished part 4
+
+commit fc55bc584795b049d1c4b202e567bf934768d371
+Author: Sean Rozowski <srozowski25@gmail.com>
+Date:   Mon Mar 6 16:44:18 2017 -0700
+
+    finished part 3
+
+commit 0fab0aa2dd9941e87ea87f1019721c445e3991b6
+Author: Sean Rozowski <srozowsk@mines.edu>
+Date:   Thu Mar 2 16:26:02 2017 -0700
+
+    Added test files
+
+commit 4f336ed825adf16f45e502d7087c8e8ec217ff68
+Author: Sean Rozowski <srozowsk@mines.edu>
+Date:   Thu Mar 2 16:24:48 2017 -0700
+
+    Worked on part 3
+
+commit 51a48b07967e0f1b9f44ed4387afc13ca7159d9a
+Author: Sean Rozowski <srozowski25@gmail.com>
+Date:   Thu Mar 2 07:19:39 2017 -0700
+
+    Fixed where configRoom was throwing exceptions due to using == instead of .equals
+
+commit f3357d2221517b93e95c21d1d11a1ffe9d68ea47
+Author: Sean Rozowski <srozowski25@gmail.com>
+Date:   Wed Mar 1 22:21:54 2017 -0700
+
+    added CR exeption tests and cluelayout csv to files
+
+commit a59bd5c308f17c5a042aa3edd9e6ca0a5b3815fe
+Author: Sean Rozowski <srozowski25@gmail.com>
+Date:   Wed Mar 1 22:20:49 2017 -0700
+
+    Board part 2 finished
+
+commit 3df1d879a79587a32a3aaea985c911cb3a2fa9e9
+Author: Sean Rozowski <srozowski25@gmail.com>
+Date:   Wed Mar 1 17:46:56 2017 -0700
+
+    Added worked on part 2
+
+commit 81fb9828b04feafa1612b3917dee9b5c0f6826e4
+Author: Sean Rozowski <srozowsk@mines.edu>
+Date:   Tue Feb 28 16:37:34 2017 -0700
+
+    Added CR files
+
+commit 39e2df32d789e483f16da7b46b94f1787dcb00fe
+Author: Sean Rozowski <srozowsk@mines.edu>
+Date:   Tue Feb 28 16:35:37 2017 -0700
+
+    Board Part 1
+
+commit 851748e329212695f47922c1977b65af3b2c3ce1
+Author: Sean Rozowski <srozowski25@gmail.com>
+Date:   Fri Feb 24 16:14:00 2017 -0700
+
+    Part 2 done
+
+commit 618c715cbbcb6b8c567031e4b0d6c90f74bdf2a1
+Author: Sean Rozowski <srozowski25@gmail.com>
+Date:   Fri Feb 24 15:08:11 2017 -0700
+
+    Second Commit
+
+commit bb611825f8d472a1d182da6594d252483ce89981
+Author: Sean Rozowski <srozowski25@gmail.com>
+Date:   Thu Feb 23 16:18:58 2017 -0700
+
+    Initial commit

@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -19,6 +21,7 @@ public class ControlGUI extends JPanel{
 	private JTextField dieRoll;
 	private JTextField guess;
 	private JTextField guessResponse;
+	JButton nextPlayer;
 
 	public ControlGUI()  //main function laying out the entire GUI
 	{
@@ -38,7 +41,8 @@ public class ControlGUI extends JPanel{
 		 	currentPlayer.setText("");
 		 	currentPlayer.setEditable(false);
 		 	currentPlayer.setPreferredSize(new Dimension(20, 20));
-			JButton nextPlayer = new JButton("Next Player");
+			nextPlayer = new JButton("Next Player");
+			
 			JButton accusation = new JButton("Make Accusation");
 			panel.add(turnLabel);
 			panel.add(currentPlayer);
