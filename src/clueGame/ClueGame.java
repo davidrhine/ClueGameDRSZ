@@ -97,6 +97,7 @@ public class ClueGame extends JFrame{
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
+			if (currentPlayer != 1) return;
 			boolean notFinished = true;
 			incorrectLocation = true;
 			for (BoardCell c : targets) {
