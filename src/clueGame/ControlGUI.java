@@ -17,8 +17,8 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 public class ControlGUI extends JPanel{
-	private JTextField currentPlayer;
-	private JTextField dieRoll;
+	JTextField currentPlayerDisplay;
+	JTextField dieRoll;
 	private JTextField guess;
 	private JTextField guessResponse;
 	JButton nextPlayer;
@@ -37,15 +37,15 @@ public class ControlGUI extends JPanel{
 		 	JPanel panel = new JPanel();
 			panel.setLayout(new FlowLayout());
 		 	JLabel turnLabel = new JLabel("Current turn:");
-		 	currentPlayer = new JTextField(20);
-		 	currentPlayer.setText("");
-		 	currentPlayer.setEditable(false);
-		 	currentPlayer.setPreferredSize(new Dimension(20, 20));
+		 	currentPlayerDisplay = new JTextField(20);
+		 	currentPlayerDisplay.setText("");
+		 	currentPlayerDisplay.setEditable(false);
+		 	currentPlayerDisplay.setPreferredSize(new Dimension(20, 20));
 			nextPlayer = new JButton("Next Player");
 			
 			JButton accusation = new JButton("Make Accusation");
 			panel.add(turnLabel);
-			panel.add(currentPlayer);
+			panel.add(currentPlayerDisplay);
 			panel.add(nextPlayer);
 			panel.add(accusation);
 			panel.setBorder(new TitledBorder (new EtchedBorder()));

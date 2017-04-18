@@ -236,6 +236,7 @@ public final class Board extends JPanel {
 				continue;
 			if (pathLength == 1 || b.isDoorway() && !visited.contains(b)) {
 				targets.add(b);
+				b.setATarget(true);
 			} else {
 				visited.add(b);
 				calcTargets(b, pathLength - 1);
@@ -481,4 +482,5 @@ public final class Board extends JPanel {
 			players.get(k).drawPlayer(g);
 		}
 	}
+
 }

@@ -10,6 +10,7 @@ public class BoardCell {
 	private int row;
 	private int column;
 	private char initial;
+	private boolean isATarget = false;
 	private DoorDirection door;
 	//BorderLayout blackLine = BorderFactory.createLineBorder(Color.black);
 	public BoardCell(){
@@ -32,6 +33,7 @@ public class BoardCell {
 	}
 	
 	public void drawBoardCell(Graphics g) {
+		
 		switch (this.initial) {
 		case 'W':
 			
@@ -71,6 +73,13 @@ public class BoardCell {
 				g.drawRect(this.column * 25, this.row * 25 + 22, 25, 3);
 				g.fillRect(this.column * 25, this.row * 25 + 22, 25, 3);
 			}
+		}
+		if (isATarget) {
+			g.setColor(Color.ORANGE);
+			g.drawRect(this.column * 25, this.row * 25, 25, 25);
+			g.fillRect(this.column * 25, this.row * 25, 25, 25);
+			g.setColor(Color.black);
+			g.drawRect(this.column * 25, this.row * 25, 25, 25);
 		}
 	}
 
@@ -122,6 +131,14 @@ public class BoardCell {
 	public char getInitial() {
 		return initial;
 
+	}
+
+	public boolean isATarget() {
+		return isATarget;
+	}
+
+	public void setATarget(boolean isATarget) {
+		this.isATarget = isATarget;
 	}
 
 }
