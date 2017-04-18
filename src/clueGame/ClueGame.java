@@ -48,7 +48,6 @@ public class ClueGame extends JFrame{
 	class NextPlayerClicked implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
-			
 
 			if (humanMustFinish && !initialClick) {
 				JOptionPane errorPane = new JOptionPane();
@@ -76,7 +75,7 @@ public class ClueGame extends JFrame{
 					for (BoardCell c : targets) {
 						c.setATarget(false);
 					}
-
+					
 				}
 
 				String s = Integer.toString(roll);
