@@ -39,6 +39,8 @@ public class Player {
 		g.setColor(this.color);
 		g.drawOval(col * 25, row * 25, 25, 25);
 		g.fillOval(col * 25, row * 25, 25, 25);
+		g.setColor(Color.BLACK);
+		g.drawOval(col * 25, row * 25, 25, 25);
 	}
 
 

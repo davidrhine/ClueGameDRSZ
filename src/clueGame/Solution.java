@@ -23,6 +23,11 @@ public class Solution {
 		return weapon;
 	}
 
+	@Override
+	public String toString() {
+		return person.getCardName() + ", " + room.getCardName() + ", " + weapon.getCardName();
+	}
+
 	public void setPerson(Card person) {
 		this.person = person;
 	}

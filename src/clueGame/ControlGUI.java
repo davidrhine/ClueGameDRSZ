@@ -19,9 +19,10 @@ import javax.swing.border.TitledBorder;
 public class ControlGUI extends JPanel{
 	JTextField currentPlayerDisplay;
 	JTextField dieRoll;
-	private JTextField guess;
-	private JTextField guessResponse;
+	JTextField guess;
+	JTextField guessResponse;
 	JButton nextPlayer;
+	JButton accusation;
 
 	public ControlGUI()  //main function laying out the entire GUI
 	{
@@ -43,7 +44,7 @@ public class ControlGUI extends JPanel{
 		 	currentPlayerDisplay.setPreferredSize(new Dimension(20, 20));
 			nextPlayer = new JButton("Next Player");
 			
-			JButton accusation = new JButton("Make Accusation");
+			accusation = new JButton("Make Accusation");
 			panel.add(turnLabel);
 			panel.add(currentPlayerDisplay);
 			panel.add(nextPlayer);

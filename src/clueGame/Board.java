@@ -408,6 +408,7 @@ public final class Board extends JPanel {
 	}
 
 	public static Card getRoomWithInitial(char initial) {
+		
 		String roomname = getInstance().getLegend().get(initial);
 		for (Card c : getInstance().getRooms()) {
 			if (c.getCardName().equals(roomname))
